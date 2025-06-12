@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/styles/tailwind.css -o style.css --minify"
+    "build:css": "tailwindcss -i ./src/styles/tailwind.css -o src/style.css --minify"
   },
   "keywords": [],
   "author": "",
