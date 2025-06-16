@@ -1,34 +1,38 @@
-function initThemeToggle() {
-    const themeToggleBtn = document.getElementById('theme-toggle');
 
-    function setTheme(theme) {
-        if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        }
-    }
 
-    // Inicializa tema
-    const userTheme = localStorage.getItem('theme');
-    if (userTheme === 'dark' || (!userTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
+const sunIcon = document.querySelector(".sun")
+const moonIcon = document.querySelector(".moon")
 
-    // Evento do botão
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', function () {
-            if (document.documentElement.classList.contains('dark')) {
-                setTheme('light');
-            } else {
-                setTheme('dark');
-            }
-        });
-    }
+const userTheme = localStorage.getItem("theme")
+const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+
+const iconToggle = () => {
+    sunIcon.classList.toggle("hidden")
+    moonIcon.classList.toggle("hidden")
 }
 
-document.addEventListener('DOMContentLoaded', initThemeToggle);
+const themeCheck = () => {
+    if (userTheme === "dark" || !userTheme && systemTheme) {
+        document.documentElement.classList.add("dark")
+        moonIcon.classList.add("hidden")
+        return
+    }
+    sunIcon.classList.add("hidden")
+}
+
+const themeSwitch = () => {
+    if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark")
+        localStorage.setItem("theme", "light")
+        iconToggle()
+        return
+    }
+    document.documentElement.classList.add("dark")
+    localStorage.setItem("theme", "dark")
+    iconToggle()
+}
+
+sunIcon.addEventListener("click", themeSwitch)
+moonIcon.addEventListener("click", themeSwitch)
+
+themeCheck()

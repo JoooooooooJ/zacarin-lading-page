@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Marcela Zacarin</title>
     <link href="style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
     <script src="https://kit.fontawesome.com/9219fa64bd.js" crossorigin="anonymous"></script>
     <script src="scripts/main.js" defer></script>
 </head>
@@ -12,34 +18,29 @@
 
 <!-- Hero Section -->
 <div class="-mt-24 relative w-full py-12 px-12 bg-zacarin-plum dark:bg-zacarin-beige overflow-hidden">
-    <button id="theme-toggle" aria-label="Alternar tema"
-            class="fixed top-4 right-4 z-50 p-2 rounded-full bg-zacarin-beige dark:bg-zacarin-plum text-zacarin-plum dark:text-zacarin-beige shadow-lg transition-colors duration-300 text-xl">
-        <i id="theme-toggle-light-icon" class="fa-solid fa-sun block dark:hidden"></i>
-        <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden dark:block"></i>
+
+    <button aria-label="Alternar tema"
+            class="moon fixed top-4 right-4 z-50 p-2 rounded-full bg-zacarin-beige dark:bg-zacarin-plum text-zacarin-plum dark:text-zacarin-beige shadow-lg transition-colors duration-300 text-xl cursor-pointer">
+        <i class="fa-solid fa-moon"></i>
     </button>
+    <i class="fa-solid fa-moon"></i>
+
+    <button aria-label="Alternar tema"
+            class="sun fixed top-4 right-4 z-50 p-2 rounded-full bg-zacarin-beige dark:bg-zacarin-plum text-zacarin-plum dark:text-zacarin-beige shadow-lg transition-colors duration-300 text-xl cursor-pointer">
+        <i class="fa-solid fa-sun"></i>
+    </button>
+
     <div class="relative z-10 text-center py-24 md:py-48">
         <h1 class="text-zacarin-beige dark:text-zacarin-plum text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold mb-8">
             Marcela Roberta Jacyntho Zacarin
         </h1>
         <p class="mb-8 text-lg md:text-xl text-zacarin-beige dark:text-zacarin-plum font-heading font-medium">
-            Psicóloga • CRP 08/23523
+            Psicóloga Clínica Comportamental Contextual
         </p>
         <a href="https://wa.me/"
            class="inline-block bg-zacarin-beige text-zacarin-plum dark:bg-zacarin-plum dark:text-zacarin-beige uppercase text-sm tracking-widest font-heading px-8 py-4 transition mb-6">
             Agende agora pelo WhatsApp
         </a>
-        <!-- Contatos rápidos -->
-        <div class="flex flex-wrap justify-center items-center gap-6 mt-6 mb-8">
-            <a href="mailto:contato@seudominio.com"
-               class="flex items-center gap-2 text-zacarin-beige dark:text-zacarin-plum hover:underline font-heading text-base">
-                <i class="fas fa-envelope"></i> contato@seudominio.com
-            </a>
-            <a href="https://www.instagram.com/bipolarpsi"
-               target="_blank" rel="nofollow"
-               class="flex items-center gap-2 text-zacarin-beige dark:text-zacarin-plum hover:underline font-heading text-base">
-                <i class="fab fa-instagram"></i> Instagram
-            </a>
-        </div>
     </div>
     <!-- Navegação principal -->
     <nav class="relative z-10 mx-auto max-w-4xl">
@@ -71,9 +72,9 @@
     <div class="bg-zacarin-beige dark:bg-zacarin-plum p-12 md:p-24 flex justify-end items-center">
         <a href="#">
             <!-- Imagem para tema claro -->
-            <img src="components/images/claro_header.jpg" class="w-full max-w-md block dark:hidden" alt="logo claro"/>
+            <img src="components/images/logo.jpg" class="w-full max-w-md block dark:hidden" alt="logo claro"/>
             <!-- Imagem para tema escuro -->
-            <img src="components/images/escuro_header.jpg" class="w-full max-w-md hidden dark:block" alt="logo escuro"/>
+            <img src="components/images/logo.jpg" class="w-full max-w-md hidden dark:block" alt="logo escuro"/>
         </a>
     </div>
 
@@ -87,18 +88,14 @@
         </div>
     </div>
 </div>
-
-<!-- Full Screen Image -->
-<img src="https://picsum.photos/1920/1080" class="w-full h-screen object-cover" alt="Full Screen"/>
-
 <!-- Call to Action Section -->
 <div class="max-w-xl mx-auto text-center py-24 md:py-32" id="cta">
     <div class="w-24 h-2 bg-zacarin-plum dark:bg-zacarin-beige mb-4 mx-auto"></div>
     <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl mb-6">
-        Como posso te ajudar hoje?
+        Importância da terapia
     </h2>
     <p class="font-light text-zacarin-plum/80 dark:text-zacarin-beige/80 mb-6 leading-relaxed">
-        Escolha uma das áreas abaixo para saber mais:
+        Texto em andamento
     </p>
 </div>
 
@@ -114,7 +111,8 @@
             </p>
             <span class="inline-block px-4 py-2 bg-zacarin-beige text-zacarin-plum dark:bg-zacarin-plum dark:text-zacarin-beige rounded font-medium text-sm uppercase">Ver perguntas</span>
         </div>
-        <img src="https://picsum.photos/400?1" class="absolute inset-0 w-full h-full object-cover opacity-50" alt="Perguntas Frequentes"/>
+        <img src="https://picsum.photos/400?1" class="absolute inset-0 w-full h-full object-cover opacity-50"
+             alt="Perguntas Frequentes"/>
     </a>
     <!-- Categoria 2: Valor -->
     <a href="/public#valor"
@@ -126,7 +124,8 @@
             </p>
             <span class="inline-block px-4 py-2 bg-zacarin-beige text-zacarin-plum dark:bg-zacarin-plum dark:text-zacarin-beige rounded font-medium text-sm uppercase">Saiba mais</span>
         </div>
-        <img src="https://picsum.photos/400?2" class="absolute inset-0 w-full h-full object-cover opacity-50" alt="Valor"/>
+        <img src="https://picsum.photos/400?2" class="absolute inset-0 w-full h-full object-cover opacity-50"
+             alt="Valor"/>
     </a>
     <!-- Categoria 3: Sobre -->
     <a href="/public#sobre"
@@ -138,29 +137,9 @@
             </p>
             <span class="inline-block px-4 py-2 bg-zacarin-beige text-zacarin-plum dark:bg-zacarin-plum dark:text-zacarin-beige rounded font-medium text-sm uppercase">Ver detalhes</span>
         </div>
-        <img src="https://picsum.photos/400?3" class="absolute inset-0 w-full h-full object-cover opacity-50" alt="Sobre"/>
+        <img src="https://picsum.photos/400?3" class="absolute inset-0 w-full h-full object-cover opacity-50"
+             alt="Sobre"/>
     </a>
-</div>
-
-<!-- Valores -->
-<div class="grid grid-cols-1 md:grid-cols-2">
-    <div class="bg-zacarin-beige dark:bg-zacarin-plum p-12 md:p-24 flex justify-end items-center">
-        <a href="#">
-            <!-- Imagem para tema claro -->
-            <img src="components/images/claro_header.jpg" class="w-full max-w-md block dark:hidden" alt="logo claro"/>
-            <!-- Imagem para tema escuro -->
-            <img src="components/images/escuro_header.jpg" class="w-full max-w-md hidden dark:block" alt="logo escuro"/>
-        </a>
-    </div>
-    <div class="md:order-first bg-zacarin-plum/10 dark:bg-zacarin-beige/10 p-12 md:p-24 flex justify-end items-center">
-        <div class="max-w-md">
-            <div class="w-24 h-2 bg-zacarin-plum dark:bg-zacarin-beige mb-4"></div>
-            <h2 class="font-display font-bold text-2xl md:text-3xl lg:text-4xl mb-6">Valores</h2>
-            <p class="font-light text-zacarin-plum/80 dark:text-zacarin-beige/80 text-sm md:text-base mb-6 leading-relaxed">
-                Uma breve descrição dos valores para antendimento
-            </p>
-        </div>
-    </div>
 </div>
 
 <!-- Footer CTA Image Section -->
@@ -168,8 +147,17 @@
     <div class="relative z-10 text-center py-12 md:py-24">
         <h1 class="text-zacarin-beige dark:text-zacarin-plum text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold mb-6">
             Marcela Roberta Jacyntho Zacarin</h1>
-        <p class="text-zacarin-beige dark:text-zacarin-plum mb-10 text-base md:text-lg font-bold"> Psicóloga • CRP 08/23523</p>
+        <p class="text-zacarin-beige dark:text-zacarin-plum mb-10 text-base md:text-lg font-bold"> Psicóloga • CRP
+            08/23523</p>
+        <div id="map"></div>
+        <script>
+            const map = L.map('map').setView([51.505, -0.09], 13);
+        </script>
         <div class="flex justify-center space-x-6 text-3xl">
+            <a href="mailto:contato@seudominio.com"
+               class="flex items-center gap-2 text-zacarin-beige dark:text-zacarin-plum hover:underline font-heading text-base">
+                <i class="fas fa-envelope"></i> contato@seudominio.com
+            </a>
             <a href="https://www.instagram.com/bipolarpsi"
                class="text-zacarin-beige dark:text-zacarin-plum hover:text-zacarin-plum dark:hover:text-zacarin-beige transition"
                aria-label="Instagram">
@@ -179,31 +167,6 @@
                class="text-zacarin-beige dark:text-zacarin-plum hover:text-zacarin-plum dark:hover:text-zacarin-beige transition"
                aria-label="WhatsApp">
                 <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#"
-               class="text-zacarin-beige dark:text-zacarin-plum hover:text-zacarin-plum dark:hover:text-zacarin-beige transition"
-               aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="#"
-               class="text-zacarin-beige dark:text-zacarin-plum hover:text-zacarin-plum dark:hover:text-zacarin-beige transition"
-               aria-label="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#"
-               class="text-zacarin-beige dark:text-zacarin-plum hover:text-zacarin-plum dark:hover:text-zacarin-beige transition"
-               aria-label="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="#"
-               class="text-zacarin-beige dark:text-zacarin-plum hover:text-zacarin-plum dark:hover:text-zacarin-beige transition"
-               aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="#"
-               class="text-zacarin-beige dark:text-zacarin-plum hover:text-zacarin-plum dark:hover:text-zacarin-beige transition"
-               aria-label="TikTok">
-                <i class="fab fa-tiktok"></i>
             </a>
         </div>
     </div>
